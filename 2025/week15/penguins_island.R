@@ -40,6 +40,5 @@ ggplot(df, aes(island,  body_mass_g))+
     legend.text = element_text(size = 12, color = 'white', face = 'bold'), 
     legend.title = element_text(size = 14, color = 'white', face = 'bold')
   )
-ggsave("penguins_island.png", dpi = 360, width = 12, height = 9)
-ggsave("penguins_island.pdf", dpi = 360, width = 16.5, height =11.7)
+ggsave("penguins_island.png", width = 1920, height = 1080, units = "px", dpi = 132)
 ## things to do increase the size of th
