@@ -18,5 +18,5 @@ ggplot(df, aes(date, price)) +
     plot.title = element_text(size = 36, face = "bold", hjust = .5), 
     plot.subtitle = element_text(size =20, hjust = .5)
   )
-ggsave("weekly_gas_price.png", width = 1920, height = 1080, units = "px", dpi = 132)
+ggsave("weekly_gas_price_1.png", width = 1920, height = 1080, units = "px", dpi = 132)
 
