@@ -46,5 +46,5 @@ ggplot(penguins, aes(bill_length_mm, flipper_length_mm, color = species)) +
         axis.title = element_text(size = 12, color = penguins_hue[6]),
         axis.ticks = element_blank(), 
         axis.text = element_blank())
-ggsave("penguins.png", dpi = 360, width = 12, height = 9)
-ggsave("penguins.pdf", dpi = 360, width = 16.5, height =11.7)
+ggsave("meet_penguins.png", width = 1920, height = 1080, units = "px", dpi = 132)
+
