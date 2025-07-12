@@ -18,8 +18,7 @@ subtitle <- "Palmer penguins is a very popular dataset in the data science and s
 <br> <span style='color:#D5D5D3;'>Adélie,</span> <span style='color:#C27D38;'>Chinstrap,</span> and <span style='color:#CEAB07;'>Gentoo</span>. 
 with respect to two variables: Bill Length and Flipper Lenth. The size of each dot represents the body mass. 
 <br> Gentoos seem to be larger than others. Chinstrap tend to have a larger flipper and bill than Adélie; however, they have a similar body size."
-caption <- "Data: Palmer Penguins | Vis: MhKirmizi 
-<br> inspired and updated by Cara Thompson work"
+caption <- "Data: Palmer Penguins | Vis: MhKirmizi"
 
 ## Colors
 penguins_hue <- c("#D5D5D3", "#C27D38","#CEAB07","#F3DF6C", "#24281A", "#798E87")
@@ -40,7 +39,8 @@ ggplot(penguins, aes(bill_length_mm, flipper_length_mm, color = species)) +
         panel.background = element_rect(fill = penguins_hue[5], color = penguins_hue[5]), 
         plot.title = element_text(size = 36, colour = penguins_hue[6], 
                                   face = "bold", family = "Montserrat", hjust = 0.5),
-        plot.subtitle = element_markdown(size = 16, family = "Montserrat", color = penguins_hue[6]),
+        plot.subtitle = element_markdown(size = 16, family = "Montserrat",hjust = .5 , 
+                                         color = penguins_hue[6]),
         plot.caption = element_text(size = 12, color = penguins_hue[6]),
         panel.grid = element_line(color = penguins_hue[5]), 
         axis.title = element_text(size = 12, color = penguins_hue[6]),
