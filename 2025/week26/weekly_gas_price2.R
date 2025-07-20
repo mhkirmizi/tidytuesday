@@ -27,7 +27,7 @@ df <- df |>
 ### Plotting
 ggplot(df, aes(x = week, y = year, fill = price)) +
   geom_tile(color= "white",size=0.1) +
-  scale_fill_viridis_c(option = "F", direction = -1) +
+  scale_fill_viridis_c(option = "F") +
   labs(x = "Weeks", 
        y = "Years from 1992 to 2024", 
        title = "Three Decades in Fuel: A Weekly Price Heatmap", 
