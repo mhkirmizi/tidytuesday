@@ -1,13 +1,13 @@
 library(tidyverse)
-library(cowplot)
 library(showtext)
 library(ggtext)
+library(cowplot)
 ### Fonts
 font_add_google("Playfair Display", "playfair")
 font_add_google("Lato", "lato")
 showtext_auto()
 ### Text
-subtitle <- "Mt. Everest, the highest point on Earth, poses significant challenges to climbers. <span style='color:#94475EFF;'><b>Spring</b></span> stands out as the season to <br> reach the summit, whereas many teams attempted ascents in <span style='color:#364C54FF;'> <b>Fall</b></span> but only few managed to reach a little over 8KM."
+subtitle <- "Mt. Everest, the highest point on Earth, poses significant challenges to climbers. <span style='color:#94475EFF;'><b>Spring</b></span> stands out as the season to <br> reach the summit, whereas many teams attempted ascents in <span style='color:#364C54FF;'><b>Fall</b></span> but only few managed to reach a little over 8KM. <br>The size of each dot represents the number of climbers in each team."
 ### Data Wrangling
 exped_tidy <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-01-21/exped_tidy.csv')
 exped_tidy |> 
@@ -25,7 +25,7 @@ ggplot(aes(HIGHPOINT, TOTDAYS, color = SEASON_FACTOR)) +
   scale_shape_manual(values = c(16, 4))+ 
   labs(x = '', 
        y = 'Days to Summit', 
-       title = 'To the Summit: Expeditions on the Roof of the World', 
+       title = 'To the Summit: Expeditions to the Roof of the World', 
        subtitle = subtitle, 
        caption = "Data: The Himalayan Database | Vis: MhKirmizi") +
   theme_minimal_hgrid() +
@@ -37,9 +37,10 @@ ggplot(aes(HIGHPOINT, TOTDAYS, color = SEASON_FACTOR)) +
                               family = 'playfair', 
                               color = '#010101FF'
                                 ), 
-    plot.subtitle = element_textbox(size = 26, hjust = .5, 
+    plot.subtitle = element_textbox(size = 24, hjust = .5, 
                                  family = 'playfair', 
                                  lineheight = 1.25,
+                                 halign = .5,
                                  margin = margin(t = 5, b = 5)),
     plot.background = element_rect(color = 'white', fill = 'white'),
     panel.background = element_rect(color = 'white', fill = 'white'), 
