@@ -7,7 +7,8 @@ font_add_google("Playfair Display", "playfair")
 font_add_google("Lato", "lato")
 showtext_auto()
 ### Text
-subtitle <- "Mt. Everest, the highest point on Earth, poses significant challenges to climbers. <span style='color:#94475EFF;'><b>Spring</b></span> stands out as the season to <br> reach the summit, whereas many teams attempted ascents in <span style='color:#364C54FF;'><b>Fall</b></span> but only few managed to reach a little over 8KM. <br>The size of each dot represents the number of climbers in each team."
+subtitle <- "Mt. <b>Everest</b>, the highest point on Earth, poses significant challenges to climbers. <span style='color:#94475EFF;'><b>Spring</b></span> stands out as the season to <br> reach the summit, whereas many teams attempted ascents in <span style='color:#364C54FF;'><b>Fall</b></span> but only few managed to reach a little over 8KM. <br>Each dot represents a succesfull climb and and its size reflects the number of climbers in the team."
+
 ### Data Wrangling
 exped_tidy <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-01-21/exped_tidy.csv')
 exped_tidy |> 
@@ -42,8 +43,8 @@ ggplot(aes(HIGHPOINT, TOTDAYS, color = SEASON_FACTOR)) +
                                  lineheight = 1.25,
                                  halign = .5,
                                  margin = margin(t = 5, b = 5)),
-    plot.background = element_rect(color = 'white', fill = 'white'),
-    panel.background = element_rect(color = 'white', fill = 'white'), 
+    plot.background = element_rect(color = '#F3F6FB', fill = '#F3F6FB'),
+    panel.background = element_rect(color = '#F3F6FB', fill = '#F3F6FB'), 
     panel.grid.major.y = element_line(linetype = 'dashed')
     )
 ggsave("to_the_summit.png", width = 1920, height = 1080, units = "px", dpi = 132)
