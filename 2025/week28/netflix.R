@@ -13,7 +13,7 @@ showtext_auto()
 
 ##Text
 title <- "From CoComelon to Bridgerton: Who’s Bingeing What?"
-subtitle <- "The diagram below shows the top 15 TV shows we watched in 2024. The size of each circle represents the total number of views, \nwhile the darkness indicates total hours watched. Children's shows tend to have higher view counts, whereas general audience\nshows accumulate more total watch time."
+subtitle <- "The top 15 Netflix shows of 2024. Bigger circles mean more views; darker \nshades mean more hours watched. Kids’ shows get more clicks, adults watch longer."
 ## Data wrangling
 shows <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-07-29/shows.csv')
 diagnose(shows)
@@ -67,23 +67,31 @@ ggplot() +
       label = title_clean 
       ), 
     colour = 'white',
-    size = 8,
+    fontface = 'bold',
+    size = 4,
     hjust = .5
   ) +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_continuous(expand = c(0, 0)) +
+  coord_fixed(ratio = 1) +
   labs(
     title = title, ,
     subtitle = subtitle, 
     caption = 'Data: Netflix Engagement Report | Vis: MhKirmizi'
   ) +
-  theme_void(base_size = 14, base_family = 'roboto') +
+  theme_void(base_size = 12, base_family = 'roboto') +
   theme(
     plot.background = element_rect(fill = 'black', color = 'black'), 
     panel.background = element_rect(fill = 'black', color = 'black'), 
     legend.position = 'none', 
-    plot.title = element_text(size = 42, hjust = 0.5, face = 'bold', color = 'white'), 
-    plot.subtitle = element_text(size = 21, hjust = 0.5, 
+    plot.title = element_text(size = 28, hjust = 0.5, 
+                              family = 'mon',
+                              face = 'bold', 
+                              color = 'white'), 
+    plot.subtitle = element_text(size = 16, hjust = 0.5, 
                                  colour = 'white',
-                                 family = 'mon'), 
-    plot.caption = element_text(color = 'white', size = 16)
+                                 face = 'bold', ), 
+    plot.caption = element_text(color = 'white', size = 12, hjust =.5, face = 'bold'), 
+    plot.margin = margin(r= 80, l=80)
   )
 ggsave("netflix.png", width = 1920, height = 1080, units = "px", dpi = 132)
