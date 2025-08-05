@@ -1,0 +1,83 @@
+---
+title: "Untitled"
+format: html
+---
+```{r}
+library(tidyverse)
+library(dlookr)
+library(showtext)
+library(ggrepel)
+library(gghighlight)
+library(cowplot)
+```
+
+```{r}
+subtitle <- "The Gini Index measures income inequality on a scale from 0 (perfect equality) to 1 (perfect inequality).\nThis chart highlights inequality trends since 1960 in ten countries: Brazil has made notable progress,\nGermany has remained stable, and the United States has seen a steady rise."
+
+
+title <- "Gini Index Trends: The Good, the Bad, and the Unequal"
+```
+
+```{r}
+font_add_google("Merriweather", "merri")  
+showtext_auto()
+```
+
+```{r}
+df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-08-05/income_inequality_processed.csv')
+df_raw <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-08-05/income_inequality_raw.csv')
+```
+
+```{r}
+diagnose(df)
+diagnose(df_raw)
+```
+
+
+```{r}
+names  <- df |>
+  count(Entity) |> 
+  slice_max(order_by = n, n = 10) |> 
+  pull(Entity)
+```
+```{r}
+df |> 
+filter((Entity %in% names)) |> 
+ggplot(aes(Year, gini_dhi_eq, group= Entity)) +
+geom_line()+
+geom_point(size = 2) +
+gghighlight(Entity %in% c('Brazil', 'United States', 'Germany'), keep_scales = TRUE, use_direct_label = FALSE) +
+geom_text_repel(
+  data = df |> filter(Entity %in% c('Brazil', 'United States', 'Germany') & Year == 2020), 
+  aes(label = Entity), 
+  size = 6,
+  color = "#2a475e",
+  family = 'merri', 
+  nudge_x = 5, 
+  segment.color = NA
+)+
+scale_y_continuous(breaks = seq(.3, .6, .1), labels = seq(.3, .6, .1)) +
+labs(x = '', 
+y = 'Gini Index', 
+title = title,
+subtitle = subtitle, 
+caption = 'Data: Our World in Data | Vis: MhKirmizi'
+) +
+theme_minimal_hgrid() +
+theme(
+    text = element_text(size = 14, family = 'merri', color = "#2a475e"),
+    panel.grid.major.y = element_line(linetype = 'dashed'), 
+    axis.text = element_text(size = 14, family = 'merri', color = "#2a475e"),
+    plot.title = element_text(size = 42, hjust = .5, face = 'bold', family = 'merri', color = "#2a475e"), 
+    plot.subtitle = element_text(size = 21, hjust =.5, family = 'merri', color = "#2a475e"),
+    plot.caption = element_text(size = 14, family = 'merri'), 
+    plot.background = element_rect(fill = "#fbf9f4", color = "#fbf9f4"),
+    panel.background = element_rect(fill = "#fbf9f4", color = "#fbf9f4")
+)
+
+```
+
+```{r}
+ggsave("giny_index.png", width = 1920, height = 1080, units = "px", dpi = 132)
+
+```
